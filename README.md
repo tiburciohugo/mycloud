@@ -1,3 +1,4 @@
+![MyCloud](/public/assets/MyCloud-cover.png "MyCloud Cover")
 # MyCloud
 
 ---
