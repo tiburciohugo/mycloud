@@ -1,0 +1,40 @@
+{
+  "name": "mycloud-backend",
+  "version": "1.0.0",
+  "description": "Cloud service application backend.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "npx nodemon -L ./src/app.ts",
+    "seed": "node dist/prisma/scripts/createUser.js",
+    "build": "npm run lint && npx tsc",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --ignore-pattern **/migrations/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hugo Tiburcio",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.15",
+    "@types/express": "^4.17.20",
+    "@types/node": "^20.8.10",
+    "@types/swagger-jsdoc": "^6.0.2",
+    "@types/swagger-ui-express": "^4.1.5",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.6.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
