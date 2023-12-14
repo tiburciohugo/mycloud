@@ -6,10 +6,12 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import { swaggerConfig } from './config/swagger';
 import router from './routes/routes';
 import 'dotenv/config';
+import bodyParser from 'body-parser';
 
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors({ origin: true }));
 app.use(router);
 

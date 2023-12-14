@@ -11,7 +11,11 @@ services:
       - /app/node_modules
     ports:
       - '8080:8080'
-    command: npx nodemon -L ./src/app.ts
+    command: >
+      /bin/sh -c "
+      npx prisma generate &&
+      npx nodemon -L ./src/app.ts
+      "
     networks:
       - mycloud
     depends_on:
