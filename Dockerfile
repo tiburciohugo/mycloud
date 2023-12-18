@@ -1,13 +1,14 @@
 FROM node:18-alpine
 
 WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
 
 COPY tsconfig*.json ./
 COPY package*.json ./
 
 RUN npm install
 
-COPY src/ src/
+COPY . ./
 
 ENV PORT=8080
 

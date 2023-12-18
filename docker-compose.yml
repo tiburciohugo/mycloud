@@ -4,18 +4,15 @@ services:
   api:
     image: node:18-alpine
     environment:
-      - DATABASE_URL= ${DATABASE_URL}
+      - DATABASE_URL=postgresql://postgres:docker@db:5432/mycloud
+      - PORT=${PORT}
     build: .
     volumes:
       - .:/app
       - /app/node_modules
     ports:
       - '8080:8080'
-    command: >
-      /bin/sh -c "
-      npx prisma generate &&
-      npx nodemon -L ./src/app.ts
-      "
+    command: npm run start:dev
     networks:
       - mycloud
     depends_on:
@@ -28,11 +25,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - '5432:5432'
+      - '54320:5432'
     volumes:
       - ${DOCKER_VOLUME_PATH}/postgres_data:/var/lib/postgresql/data
     networks:
       - mycloud
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   mycloud:
